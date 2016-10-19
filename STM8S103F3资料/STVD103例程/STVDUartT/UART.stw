@@ -1,0 +1,12 @@
+;	STMicroelectronics Workspace file
+
+[Version]
+Keyword=ST7Workspace-V0.7
+
+[Project0]
+Filename=uart.stp
+Dependencies=
+[Options]
+ActiveProject=uart
+ActiveConfig=Debug
+AddSortedElements=1

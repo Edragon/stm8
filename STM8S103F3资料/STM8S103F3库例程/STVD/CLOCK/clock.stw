@@ -1,0 +1,14 @@
+;	STMicroelectronics Workspace file
+
+[Version]
+Keyword=ST7Workspace-V0.7
+
+[Project0]
+Filename=clock.stp
+Dependencies=
+[Options]
+ActiveProject=clock
+ActiveConfig=Debug
+AddSortedElements=1
+[.St7McuIcdConf]
+McuName=STM8S103F3P
