@@ -1,0 +1,290 @@
+C51 COMPILER V9.01   SGP18T_ILI9163B_BASE                                                  04/16/2015 14:23:02 PAGE 1   
+
+
+C51 COMPILER V9.01, COMPILATION OF MODULE SGP18T_ILI9163B_BASE
+OBJECT MODULE PLACED IN .\OBJ\SGP18T_ILI9163B_base.obj
+COMPILER INVOKED BY: C:\Keil\C51\BIN\C51.EXE DriverFiles\SGP18T_ILI9163B_base.c BROWSE INCDIR(.\DriverFiles) DEBUG OBJEC
+                    -TEXTEND PRINT(.\SGP18T_ILI9163B_base.lst) TABS(2) OBJECT(.\OBJ\SGP18T_ILI9163B_base.obj)
+
+line level    source
+
+   1          #include<reg51.h>
+   2          #include "MyType.h"
+   3          #include "SGP18T_ILI9163B_base.h"
+   4          
+   5          
+   6          
+   7          
+   8          /**********************************************************
+   9          函数名称：ILI9163B_init()
+  10          入口参数：无
+  11          出口参数：无
+  12          时间：2011/8/8
+  13          功能说明：器件初始化
+  14          其他说明：无
+  15          **********************************************************/
+  16          void ILI9163B_init(void)
+  17          {   
+  18   1        
+  19   1          ILI9163B_write_command(0x11);               //关闭睡眠，振荡器工作
+  20   1          delay(100);
+  21   1          
+  22   1          ILI9163B_write_command(0x3a);               //每次传送16位数据(VIPF3-0=0101)，每个像素16位(IFPF2-0=101)
+  23   1          ILI9163B_write_para8(0x55);           
+  24   1         
+  25   1          ILI9163B_write_command(0x26);               
+  26   1          ILI9163B_write_para8(0x04);
+  27   1        
+  28   1          ILI9163B_write_command(0xf2);                 //Driver Output Control(1)
+  29   1          ILI9163B_write_para8(0x01);
+  30   1          
+  31   1          ILI9163B_write_command(0xe0);                 //Driver Output Control(1)
+  32   1          ILI9163B_write_para8(0x3f);
+  33   1          ILI9163B_write_para8(0x25);
+  34   1          ILI9163B_write_para8(0x1c);
+  35   1          ILI9163B_write_para8(0x1e);
+  36   1          ILI9163B_write_para8(0x20);
+  37   1          ILI9163B_write_para8(0x12);
+  38   1          ILI9163B_write_para8(0x2a);
+  39   1          ILI9163B_write_para8(0x90);
+  40   1          ILI9163B_write_para8(0x24);
+  41   1          ILI9163B_write_para8(0x11);
+  42   1          ILI9163B_write_para8(0x00);
+  43   1          ILI9163B_write_para8(0x00);
+  44   1          ILI9163B_write_para8(0x00);
+  45   1          ILI9163B_write_para8(0x00);
+  46   1          ILI9163B_write_para8(0x00);
+  47   1           
+  48   1          ILI9163B_write_command(0xe1);              //Driver Output Control(1)
+  49   1          ILI9163B_write_para8(0x20);
+  50   1          ILI9163B_write_para8(0x20);
+  51   1          ILI9163B_write_para8(0x20);
+  52   1          ILI9163B_write_para8(0x20);
+  53   1          ILI9163B_write_para8(0x05);
+  54   1          ILI9163B_write_para8(0x00);
+C51 COMPILER V9.01   SGP18T_ILI9163B_BASE                                                  04/16/2015 14:23:02 PAGE 2   
+
+  55   1          ILI9163B_write_para8(0x15);
+  56   1          ILI9163B_write_para8(0xa7);
+  57   1          ILI9163B_write_para8(0x3d);
+  58   1          ILI9163B_write_para8(0x18);
+  59   1          ILI9163B_write_para8(0x25);
+  60   1          ILI9163B_write_para8(0x2a);
+  61   1          ILI9163B_write_para8(0x2b);
+  62   1          ILI9163B_write_para8(0x2b);  
+  63   1          ILI9163B_write_para8(0x3a);  
+  64   1          
+  65   1          ILI9163B_write_command(0xb1);               //设置屏幕刷新频率
+  66   1          ILI9163B_write_para8(0x08);           //DIVA=8
+  67   1          ILI9163B_write_para8(0x08);           //VPA =8，约90Hz
+  68   1                     
+  69   1          ILI9163B_write_command(0xb4);               //LCD Driveing control
+  70   1          ILI9163B_write_para8(0x07);           //NLA=1,NLB=1,NLC=1
+  71   1         
+  72   1         
+  73   1          ILI9163B_write_command(0xc0);              //LCD Driveing control
+  74   1          ILI9163B_write_para8(0x0a);
+  75   1          ILI9163B_write_para8(0x02);
+  76   1            
+  77   1          ILI9163B_write_command(0xc1);              //LCD Driveing control
+  78   1          ILI9163B_write_para8(0x02);
+  79   1      
+  80   1          ILI9163B_write_command(0xc5);              //LCD Driveing control
+  81   1          ILI9163B_write_para8(0x4f);
+  82   1          ILI9163B_write_para8(0x5a);
+  83   1      
+  84   1          ILI9163B_write_command(0xc7);              //LCD Driveing control
+  85   1          ILI9163B_write_para8(0x40);
+  86   1          
+  87   1          ILI9163B_write_command(0x2a);               //配置MCU可操作的LCD内部RAM横坐标起始、结束参数
+  88   1          ILI9163B_write_para8(0x00);           //横坐标起始地址0x0000
+  89   1          ILI9163B_write_para8(0x00);         
+  90   1          ILI9163B_write_para8(0x00);           //横坐标结束地址0x007f(127)
+  91   1          ILI9163B_write_para8(0x7f);
+  92   1         
+  93   1          ILI9163B_write_command(0x2b);               //配置MCU可操作的LCD内部RAM纵坐标起始结束参数
+  94   1          ILI9163B_write_para8(0x00);           //纵坐标起始地址0x0000
+  95   1          ILI9163B_write_para8(0x00);
+  96   1          ILI9163B_write_para8(0x00);           //纵坐标结束地址0x009f(159)
+  97   1          ILI9163B_write_para8(0x9f);
+  98   1          
+  99   1      
+ 100   1          ILI9163B_write_command(0x36);               //配置MPU和DDRAM对应关系
+ 101   1          ILI9163B_write_para8(0xc0);         //MX=1,MY=1
+ 102   1      
+ 103   1          ILI9163B_write_command(0xb7);               //LCD Driveing control
+ 104   1          ILI9163B_write_para8(0x00);           //CRL=0
+ 105   1           
+ 106   1          ILI9163B_write_command(0x29);           //开启屏幕显示
+ 107   1          ILI9163B_write_command(0x2c);         //设置为LCD接收数据/命令模式
+ 108   1        
+ 109   1      }
+ 110          
+ 111          
+ 112          /******************DRIVE IC寄存器寻址 8080 SERIES*******************************/
+ 113          void ILI9163B_write_command(uint8 cmd)
+ 114          {
+ 115   1        uint8 i;
+ 116   1      
+C51 COMPILER V9.01   SGP18T_ILI9163B_BASE                                                  04/16/2015 14:23:02 PAGE 3   
+
+ 117   1        ILI9163_A0=0;             //A0=0发送命令
+ 118   1        ILI9163_CS=0;
+ 119   1        for(i=0;i<8;i++)
+ 120   1        {
+ 121   2          ILI9163_SCK=0;
+ 122   2      //    if((addr1&0x80)==0x80)      //高位先发送
+ 123   2      //      ILI9163_SDA=1;
+ 124   2      //    else    
+ 125   2      //      ILI9163_SDA=0;
+ 126   2          ILI9163_SDA = (bit)(0x80&cmd);
+ 127   2          ILI9163_SCK = 1;
+ 128   2          cmd = (cmd<<1);
+ 129   2      
+ 130   2        }
+ 131   1          ILI9163_CS=1;
+ 132   1      }
+ 133          
+ 134          /*****************DRIVE IC寄存器写数据 8080 SERIES******************************/
+ 135          void ILI9163B_write_para8(uint8 dat)
+ 136          {  
+ 137   1        uint8 i;
+ 138   1      
+ 139   1        ILI9163_A0=1;               //A0=1发送数据
+ 140   1        ILI9163_CS=0;       
+ 141   1        for(i=0;i<8;i++)
+ 142   1        {
+ 143   2          ILI9163_SCK=0;
+ 144   2      //    if((para&0x80)==0x80)
+ 145   2      //      ILI9163_SDA=1;
+ 146   2      //    else
+ 147   2      //      ILI9163_SDA=0;
+ 148   2          ILI9163_SDA = (bit)(0x80&dat);
+ 149   2          ILI9163_SCK = 1;
+ 150   2          dat = (dat<<1);
+ 151   2      
+ 152   2        }
+ 153   1        ILI9163_CS=1;
+ 154   1      }
+ 155           
+ 156          /****************DRIVE IC GDRAM 写数据 16BITS 8080 SERIES*****************************/
+ 157          void ILI9163B_write_para16(uint16 dat)
+ 158          {      
+ 159   1        uint8 i,buf;
+ 160   1        ILI9163_A0=1;
+ 161   1        ILI9163_CS=0;       
+ 162   1      
+ 163   1        buf = (uint8)(0xFF&(dat>>8));
+ 164   1        for(i=0;i<8;i++)
+ 165   1        {
+ 166   2          ILI9163_SCK=0;
+ 167   2      //    if((buf&0x80)==0x80)
+ 168   2      //      ILI9163_SDA=1;
+ 169   2      //    else
+ 170   2      //      ILI9163_SDA=0;
+ 171   2          ILI9163_SDA = (bit)(0x80&buf);
+ 172   2          ILI9163_SCK=1;
+ 173   2          buf=(buf<<1);
+ 174   2      
+ 175   2        }
+ 176   1        ILI9163_CS=1;
+ 177   1      
+ 178   1        buf = (uint8)(0xFF&dat);
+C51 COMPILER V9.01   SGP18T_ILI9163B_BASE                                                  04/16/2015 14:23:02 PAGE 4   
+
+ 179   1        ILI9163_CS=0;
+ 180   1        for(i=0;i<8;i++)
+ 181   1        {
+ 182   2          ILI9163_SCK=0;
+ 183   2      //    if((buf&0x80)==0x80)
+ 184   2      //      ILI9163_SDA=1;
+ 185   2      //    else
+ 186   2      //      ILI9163_SDA=0;
+ 187   2          ILI9163_SDA = (bit)(0x80&buf);
+ 188   2          ILI9163_SCK =1;
+ 189   2          buf=(buf<<1);
+ 190   2        }
+ 191   1        ILI9163_CS=1; 
+ 192   1      }
+ 193          
+ 194          
+ 195          /**********************************************************
+ 196          函数名称：ILI9163B_SetPos()
+ 197          入口参数：起始终止坐标
+ 198          出口参数：无
+ 199          时间：2011/8/8
+ 200          功能说明：重新定位输入信息位置
+ 201          其他说明：无
+ 202          **********************************************************/
+ 203          void ILI9163B_SetPos(uint8 xs,uint8 ys,uint8 xe,uint8 ye)
+ 204          {
+ 205   1        ILI9163B_write_command(0x2A);       //Colulm addRSTs set
+ 206   1        ILI9163B_write_para8(0x00);     //行起始坐标高8位，始终为零
+ 207   1        ILI9163B_write_para8(xs);     //行起始坐标低8位
+ 208   1        ILI9163B_write_para8(0x00);     //行终止坐标高8位，始终为零
+ 209   1        ILI9163B_write_para8(xe);     //行终止坐标低8位
+ 210   1      
+ 211   1        ILI9163B_write_command(0x2B);       //Colulm addRSTs set
+ 212   1        ILI9163B_write_para8(0x00);     //列起始坐标高8位，始终为零
+ 213   1        ILI9163B_write_para8(ys);     //列起始坐标低8位
+ 214   1        ILI9163B_write_para8(0x00);     //列终止坐标高8位，始终为零
+ 215   1        ILI9163B_write_para8(ye);     //列终止坐标低8位
+ 216   1      
+ 217   1        ILI9163B_write_command(0x2C);       //GRAM接收MCU数据或命令
+ 218   1      }
+ 219          
+ 220          
+ 221          /**********************************************************
+ 222          函数名称：ILI9163B_address_rst()
+ 223          入口参数：无
+ 224          出口参数：无
+ 225          时间：2011/8/8
+ 226          功能说明：重置地址
+ 227          其他说明：无
+ 228          **********************************************************/
+ 229          void ILI9163B_address_rst(void)
+ 230          {
+ 231   1          ILI9163B_write_command(0x2a);               //配置MCU可操作的LCD内部RAM横坐标起始、结束参数
+ 232   1          ILI9163B_write_para8(0x00);           //横坐标起始地址0x0000
+ 233   1          ILI9163B_write_para8(0x00);         
+ 234   1          ILI9163B_write_para8(0x00);           //横坐标结束地址0x007f(127)
+ 235   1          ILI9163B_write_para8(0x7f);
+ 236   1         
+ 237   1          ILI9163B_write_command(0x2b);               //配置MCU可操作的LCD内部RAM纵坐标起始结束参数
+ 238   1          ILI9163B_write_para8(0x00);           //纵坐标起始地址0x0000
+ 239   1          ILI9163B_write_para8(0x00);
+ 240   1          ILI9163B_write_para8(0x00);           //纵坐标结束地址0x009f(159)
+C51 COMPILER V9.01   SGP18T_ILI9163B_BASE                                                  04/16/2015 14:23:02 PAGE 5   
+
+ 241   1          ILI9163B_write_para8(0x9f);
+ 242   1      
+ 243   1        ILI9163B_write_command(0x2C);       //GRAM接收MCU数据或命令
+ 244   1      }
+ 245          
+ 246          
+ 247          
+ 248          /*********************************************************/
+ 249          //延时函数
+ 250          void delay(uint16 t)
+ 251          {
+ 252   1        uint16 i,j;
+ 253   1      
+ 254   1        for(j=0;j<t;j++)
+ 255   1          for(i=0;i<250;i++);
+ 256   1      }
+ 257          
+ 258                           
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =    581    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =   ----       4
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

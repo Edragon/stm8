@@ -1,0 +1,7 @@
+".\OBJ\STARTUP.obj",
+".\OBJ\application.obj",
+".\OBJ\SGP18T_ILI9163B_base.obj",
+".\OBJ\SGP18T_ILI9163B_figure.obj",
+".\OBJ\SGP18T_ILI9163B_ascii.obj" 
+TO ".\OBJ\SGP18T_ILI9163B_V300" 
+PRINT(".\SGP18T_ILI9163B_V300.m51")

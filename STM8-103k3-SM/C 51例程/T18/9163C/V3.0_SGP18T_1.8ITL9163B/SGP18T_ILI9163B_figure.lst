@@ -1,0 +1,228 @@
+C51 COMPILER V9.01   SGP18T_ILI9163B_FIGURE                                                04/16/2015 14:23:02 PAGE 1   
+
+
+C51 COMPILER V9.01, COMPILATION OF MODULE SGP18T_ILI9163B_FIGURE
+OBJECT MODULE PLACED IN .\OBJ\SGP18T_ILI9163B_figure.obj
+COMPILER INVOKED BY: C:\Keil\C51\BIN\C51.EXE DriverFiles\SGP18T_ILI9163B_figure.c BROWSE INCDIR(.\DriverFiles) DEBUG OBJ
+                    -ECTEXTEND PRINT(.\SGP18T_ILI9163B_figure.lst) TABS(2) OBJECT(.\OBJ\SGP18T_ILI9163B_figure.obj)
+
+line level    source
+
+   1          #include<reg51.h>
+   2          #include "MyType.h"
+   3          #include "SGP18T_ILI9163B_base.h"
+   4          #include "SGP18T_ILI9163B_figure.h"
+   5          
+   6          
+   7          
+   8          
+   9          
+  10          
+  11          
+  12          
+  13          /**********************************************************
+  14          º¯ÊýÃû³Æ£ºILI9163B_display_full()
+  15          Èë¿Ú²ÎÊý£ºcolorÎª³£ÓÃµÄÐèÒªÏÔÊ¾µÄÑÕÉ«(ÒÑ¾­ÌáÇ°¶¨Òå)£¬colorÎª
+  16                NULLÊ±£¬Ôò¿É½«²»³£ÓÃÑÕÉ«·ÅÈëdatÖÐ¼ÓÒÔÏÔÊ¾
+  17          ³ö¿Ú²ÎÊý£ºÎÞ
+  18          Ê±¼ä£º2011/8/8
+  19          ¹¦ÄÜËµÃ÷£ºÈ«ÆÁÏÔÊ¾µ¥É«»­Ãæ
+  20          ÆäËûËµÃ÷£ºÎÞ
+  21          **********************************************************/
+  22          void ILI9163B_display_full(uint16 color)
+  23          {
+  24   1          unsigned int i,j;
+  25   1        
+  26   1        ILI9163B_address_rst();
+  27   1      
+  28   1        for(i=0;i<160;i++)
+  29   1        {
+  30   2            for(j=0;j<128;j++)
+  31   2              {
+  32   3            ILI9163B_write_para16(color);
+  33   3              }
+  34   2        }
+  35   1      }
+  36          
+  37          
+  38          
+  39          /**********************************************************
+  40          º¯ÊýÃû³Æ£ºILI9163B_draw_part()
+  41          Èë¿Ú²ÎÊý£ºÆðÊ¼¡¢ÖÕÖ¹ºá×ø±ê(0-127)£¬×Ý×ø±ê(0-159),ÏÔÊ¾ÑÕÉ«uint16
+  42          ³ö¿Ú²ÎÊý£ºÎÞ
+  43          Ê±¼ä£º2011/8/8
+  44          ¹¦ÄÜËµÃ÷£ºÌî³ä¾ØÐÎÇøÓò
+  45          ÆäËûËµÃ÷£º0<=xs<xe<=127
+  46                0<=ys<ye<=159
+  47          **********************************************************/
+  48          void ILI9163B_draw_part(uint8 xs,uint8 ys,uint8 xe,uint8 ye,uint16 color_dat)
+  49          {
+  50   1        uint8 i,j;
+  51   1      
+  52   1        ILI9163B_SetPos(xs,ys,xe,ye); 
+  53   1        for(j=0;j<(ye-ys+1);j++)
+  54   1          {
+C51 COMPILER V9.01   SGP18T_ILI9163B_FIGURE                                                04/16/2015 14:23:02 PAGE 2   
+
+  55   2            for(i=0;i<(xe-xs+1);i++)
+  56   2          {
+  57   3            ILI9163B_write_para16(color_dat);
+  58   3          }
+  59   2        }   
+  60   1      }
+  61          
+  62          /**********************************************************
+  63          º¯ÊýÃû³Æ£ºILI9163B_draw_rectangle()
+  64          Èë¿Ú²ÎÊý£ºÆðÊ¼¡¢ÖÕÖ¹ºá×ø±ê(0-127)£¬×Ý×ø±ê(0-159),ÏÔÊ¾ÑÕÉ«uint16
+  65          ³ö¿Ú²ÎÊý£ºÎÞ
+  66          Ê±¼ä£º2011/8/8
+  67          ¹¦ÄÜËµÃ÷£º»­¾ØÐÎ±ß¿ò
+  68          ÆäËûËµÃ÷£º0<=xs<xe<=127
+  69                0<=ys<ye<=159
+  70          **********************************************************/
+  71          void ILI9163B_draw_rectangle(uint8 xs,uint8 ys,uint8 xe,uint8 ye,uint16 color_dat)
+  72          {
+  73   1        ILI9163B_draw_line(xs,ys,xs,ye,color_dat);    //»­¾ØÐÎ×ó±ß
+  74   1        ILI9163B_draw_line(xe,ys,xe,ye,color_dat);    //»­¾ØÐÎÓÒ±ß
+  75   1        ILI9163B_draw_line(xs,ys,xe,ys,color_dat);    //»­¾ØÐÎÉÏ±ß
+  76   1        ILI9163B_draw_line(xs,ye,xe,ye,color_dat);    //»­¾ØÐÎÏÂ±ß
+  77   1      }
+  78          
+  79          
+  80          /**********************************************************
+  81          º¯ÊýÃû³Æ£ºILI9163B_draw_circle()
+  82          Èë¿Ú²ÎÊý£ºÔ²ÐÄºá×ø±ê(0-127)£¬×Ý×ø±ê(0-159),°ë¾¶(0-128),ÏÔÊ¾ÑÕÉ«uint16
+  83          ³ö¿Ú²ÎÊý£ºÎÞ
+  84          Ê±¼ä£º2011/8/8
+  85          ¹¦ÄÜËµÃ÷£º»­Ô²ÐÎ±ß¿ò(½öÖ§³ÖÆÁÄ»ÄÚ»­Ô²)
+  86          ÆäËûËµÃ÷£º0<=x<=127
+  87                0<=y<=159
+  88          **********************************************************/
+  89          void ILI9163B_draw_circle(uint8 x,uint8 y,uint8 r,uint16 color_dat)
+  90          {
+  91   1        unsigned char dx, dy = r; 
+  92   1      
+  93   1        if((x>=r) &&((128-x)>=r) && (y>=r) && ((160-y)>=r))   //È·¶¨Ëù»­Ô²ÔÚÆÁÄ»·¶Î§ÄÚ£¬Ã»ÓÐ³¬³ö×îÍâ±ß£¬(ÔÝ²»Ö§³ÖÓ
+             -ëÆÁÄ»±ßÏà½»)
+  94   1        {
+  95   2          for(dx = 0; dx <= r; dx++)
+  96   2          {
+  97   3            while((r * r + 1 - dx * dx) < (dy * dy)) dy--;
+  98   3            ILI9163B_draw_dot(x + dx, y - dy, color_dat);
+  99   3            ILI9163B_draw_dot(x - dx, y - dy, color_dat);
+ 100   3            ILI9163B_draw_dot(x - dx, y + dy, color_dat);
+ 101   3            ILI9163B_draw_dot(x + dx, y + dy, color_dat);
+ 102   3      
+ 103   3            ILI9163B_draw_dot(x + dy, y - dx, color_dat);
+ 104   3            ILI9163B_draw_dot(x - dy, y - dx, color_dat);
+ 105   3            ILI9163B_draw_dot(x - dy, y + dx, color_dat);
+ 106   3            ILI9163B_draw_dot(x + dy, y + dx, color_dat);
+ 107   3        }
+ 108   2        }
+ 109   1      
+ 110   1      
+ 111   1      
+ 112   1      }
+ 113          
+ 114          
+ 115          /**********************************************************
+C51 COMPILER V9.01   SGP18T_ILI9163B_FIGURE                                                04/16/2015 14:23:02 PAGE 3   
+
+ 116          º¯ÊýÃû³Æ£ºILI9163B_draw_line()
+ 117          Èë¿Ú²ÎÊý£ºÆðÊ¼¡¢ÖÕÖ¹ºá×ø±ê(0-127)£¬×Ý×ø±ê(0-159),ÏÔÊ¾ÑÕÉ«uint16
+ 118          ³ö¿Ú²ÎÊý£ºÎÞ
+ 119          Ê±¼ä£º2011/8/8
+ 120          ¹¦ÄÜËµÃ÷£º»­Ö±Ïß
+ 121          ÆäËûËµÃ÷£º0<=xs<xe<=127
+ 122                0<=ys<ye<=159
+ 123          **********************************************************/
+ 124          void ILI9163B_draw_line(uint8 xs,uint8 ys,uint8 xe,uint8 ye,uint16 color_dat)
+ 125          {
+ 126   1        uint8 i,ds;
+ 127   1        int dx,dy,inc_x, inc_y;
+ 128   1        int xerr = 0, yerr = 0;       //³õÊ¼»¯±äÁ¿
+ 129   1      
+ 130   1        if(xs==xe)                //Èç¹ûÊÇ»­´¹Ö±ÏßÔòÖ»Ðè¶ÔÊúÖ±×ø±ê¼ÆÊý
+ 131   1        {
+ 132   2            ILI9163B_SetPos(xs,ys,xe,ye);
+ 133   2          for(i=0;i<(ye-ys+1);i++)
+ 134   2          {
+ 135   3            ILI9163B_write_para16(color_dat);
+ 136   3          }
+ 137   2        }
+ 138   1        else if(ys==ye)           //Èç¹ûÊÇË®Æ½ÏßÔòÖ»ÐèÒª¶ÔË®Æ½×ø±ê¼ÆÊý
+ 139   1          {
+ 140   2          ILI9163B_SetPos(xs,ys,xe,ye);
+ 141   2            for(i=0;i<(xe-xs+1);i++)
+ 142   2          {
+ 143   3            ILI9163B_write_para16(color_dat);
+ 144   3          }
+ 145   2        } 
+ 146   1        else                      //Èç¹ûÊÇÐ±Ïß£¬ÔòÖØÐÂ¼ÆËã£¬Ê¹ÓÃ»­µãº¯Êý»­³öÖ±Ïß
+ 147   1        {
+ 148   2            dx = xe - xs;               //¼ÆËã×ø±êÔöÁ¿
+ 149   2            dy = ye - ys;
+ 150   2      
+ 151   2          if(dx > 0) inc_x = 1;           //ÉèÖÃµ¥²½·½Ïò
+ 152   2          else 
+ 153   2          {
+ 154   3            inc_x = -1; dx = -dx;
+ 155   3          }
+ 156   2          if(dy > 0) inc_y = 1;           //ÉèÖÃµ¥²½·½Ïò
+ 157   2          else
+ 158   2            {
+ 159   3            inc_y = -1; dy = -dy;
+ 160   3          }
+ 161   2      
+ 162   2          if(dx > dy) ds = dx;            //Ñ¡È¡»ù±¾ÔöÁ¿×ø±êÖá
+ 163   2          else    ds = dy;
+ 164   2      
+ 165   2          for(i = 0; i <= ds+1; i++)          //»­ÏßÊä³ö
+ 166   2          {
+ 167   3            ILI9163B_draw_dot(xs, ys,color_dat);  //»­µã
+ 168   3            xerr += dx;
+ 169   3            yerr += dy;
+ 170   3            if(xerr > ds)
+ 171   3            {
+ 172   4              xerr -= ds;
+ 173   4              xs   += inc_x;
+ 174   4            }
+ 175   3            if(yerr > ds)
+ 176   3            {
+ 177   4              yerr -= ds;
+C51 COMPILER V9.01   SGP18T_ILI9163B_FIGURE                                                04/16/2015 14:23:02 PAGE 4   
+
+ 178   4              ys   += inc_y;
+ 179   4            }
+ 180   3          }
+ 181   2        }  
+ 182   1      }
+ 183          
+ 184          /**********************************************************
+ 185          º¯ÊýÃû³Æ£ºILI9163B_draw_dot()
+ 186          Èë¿Ú²ÎÊý£ºÆðÊ¼ºá×ø±ê(0-127)£¬×Ý×ø±ê(0-159),ÏÔÊ¾ÑÕÉ«uint16
+ 187          ³ö¿Ú²ÎÊý£ºÎÞ
+ 188          Ê±¼ä£º2011/8/8
+ 189          ¹¦ÄÜËµÃ÷£º»­µã
+ 190          ÆäËûËµÃ÷£º0<=x<=127
+ 191                0<=y<=159
+ 192          **********************************************************/
+ 193          void ILI9163B_draw_dot(uint8 x,uint8 y,uint16 color_dat)
+ 194          {
+ 195   1        ILI9163B_SetPos(x,y,x,y);
+ 196   1        ILI9163B_write_para16(color_dat);
+ 197   1      }
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =    857    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =   ----      49
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

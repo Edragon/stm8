@@ -1,0 +1,75 @@
+#######################################
+# Syntax Coloring Map For TFT_lib 
+#######################################
+
+#######################################
+# Datatypes (KEYWORD1)
+#######################################
+
+ILI9163_PFF	KEYWORD1
+ILI9163	KEYWORD1
+ILI9163_Font	KEYWORD1
+ILI9163_Graphics	KEYWORD1
+
+#######################################
+# Methods and Functions (KEYWORD2)
+#######################################
+
+#ILI9163_PFF
+disk_initialize	KEYWORD2
+pf_mount	KEYWORD2
+pf_open	KEYWORD2
+pf_read	KEYWORD2
+pf_write	KEYWORD2
+pf_lseek	KEYWORD2
+pf_opendir	KEYWORD2
+pf_readdir	KEYWORD2
+
+#ILI9163
+lcd_hw_init KEYWORD2
+ILI9163_write_command KEYWORD2
+ILI9163_write_para8 KEYWORD2
+ILI9163_write_para16 KEYWORD2
+Init	KEYWORD2
+GetWidth	KEYWORD2
+GetHeight	KEYWORD2
+SetOrientation	KEYWORD2
+GetOrientation	KEYWORD2
+SetColor	KEYWORD2
+GetColor	KEYWORD2
+resetArea	KEYWORD2
+setArea	KEYWORD2
+gotoXY	KEYWORD2
+putPixel	KEYWORD2
+fill	KEYWORD2
+ 
+
+#ILI9163_Graphics
+initialize	KEYWORD2
+SetCursor	KEYWORD2
+ClearScreen	KEYWORD2
+FastSolidRect	KEYWORD2
+DrawLine	KEYWORD2
+DrawRect	KEYWORD2
+DrawRoundRect	KEYWORD2
+DrawPixel	KEYWORD2
+DrawCircle	KEYWORD2
+VerticalScroll	KEYWORD2
+
+#ILI9163_Font
+set_Color	KEYWORD2
+set_Cursor	KEYWORD2
+set_Font	KEYWORD2
+putChar	KEYWORD2
+CharWidth	KEYWORD2
+putstr_P	KEYWORD2
+str_Width_P	KEYWORD2
+putstr	KEYWORD2
+putnumber	KEYWORD2
+str_Width	KEYWORD2
+
+
+#######################################
+# Constants (LITERAL1)
+#######################################
+

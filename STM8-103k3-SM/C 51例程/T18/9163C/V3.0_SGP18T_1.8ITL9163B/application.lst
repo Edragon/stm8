@@ -1,0 +1,107 @@
+C51 COMPILER V9.01   APPLICATION                                                           04/16/2015 14:23:01 PAGE 1   
+
+
+C51 COMPILER V9.01, COMPILATION OF MODULE APPLICATION
+OBJECT MODULE PLACED IN .\OBJ\application.obj
+COMPILER INVOKED BY: C:\Keil\C51\BIN\C51.EXE DriverFiles\application.c BROWSE INCDIR(.\DriverFiles) DEBUG OBJECTEXTEND P
+                    -RINT(.\application.lst) TABS(2) OBJECT(.\OBJ\application.obj)
+
+line level    source
+
+   1          #include<reg51.h>
+   2          #include "MyType.h"
+   3          #include "SGP18T_ILI9163B_base.h"
+   4          #include "SGP18T_ILI9163B_figure.h"
+   5          #include "SGP18T_ILI9163B_ascii.h"
+   6          
+   7          
+   8          int main(void)
+   9          {      
+  10   1        ILI9163_RESET=0;                                
+  11   1        delay(50);
+  12   1        ILI9163_RESET=1;                     
+  13   1        delay(100); 
+  14   1        ILI9163B_init();
+  15   1        delay(20);
+  16   1        while(1)
+  17   1        {  
+  18   2          uint8 i,j;
+  19   2      
+  20   2          ILI9163B_display_full(RED); 
+  21   2          LCD_prints16(4,9,"DRAW PART",WHITE,RED);
+  22   2          for(i=5;i>1;i--)
+  23   2          {
+  24   3            ILI9163B_draw_part(10*i,10*i,127-10*i,159-10*i,BLACK);
+  25   3            delay(500); 
+  26   3          }
+  27   2      
+  28   2          ILI9163B_display_full(GREEN);
+  29   2          LCD_prints(1,19,"DRAW RECTANGLE",BLACK,GREEN);
+  30   2          for(i=1;i<7;i++)
+  31   2          {
+  32   3            ILI9163B_draw_rectangle(10*i,10*i,127-10*i,159-10*i,BLACK);
+  33   3            delay(500);
+  34   3          }
+  35   2      
+  36   2          ILI9163B_display_full(BLUE);
+  37   2          LCD_prints16(4,9,"DRAW LINE",WHITE,BLUE);
+  38   2          ILI9163B_draw_line(0,0,127,159,BLACK);
+  39   2          ILI9163B_draw_line(0,159,127,0,BLACK);
+  40   2          for(i=1;i<10;i++)
+  41   2          {
+  42   3            ILI9163B_draw_line(12*i,0,12*i,159,BLACK);
+  43   3            ILI9163B_draw_line(0,15*i,127,15*i,BLACK);
+  44   3            delay(500);
+  45   3          }
+  46   2      
+  47   2          ILI9163B_display_full(PURPLE);
+  48   2          LCD_prints16(2,9,"DRAW CIRCLE",WHITE,PURPLE);
+  49   2          for(i=1;i<7;i++)
+  50   2          {
+  51   3            ILI9163B_draw_circle(63,79,10*i,BLACK);
+  52   3            delay(500);
+  53   3          }
+  54   2      
+C51 COMPILER V9.01   APPLICATION                                                           04/16/2015 14:23:01 PAGE 2   
+
+  55   2          ILI9163B_display_full(ORANGE);
+  56   2          LCD_prints16(3,9,"PRINT CHAR",WHITE,ORANGE);
+  57   2          for(i=0;i<8;i++)
+  58   2          {
+  59   3            for(j=0;j<21;j++)
+  60   3            {
+  61   4              LCD_printc6(j,i,(' '+i*8+j),BLACK,ORANGE);
+  62   4              delay(50);
+  63   4            }
+  64   3          }
+  65   2          for(i=8;i<15;i++)
+  66   2          {
+  67   3            for(j=0;j<16;j++)
+  68   3            {
+  69   4              LCD_printc(j,i,(' '+i*8+j),BLUE,ORANGE);
+  70   4              delay(50);
+  71   4            }
+  72   3          }
+  73   2          delay(500); 
+  74   2      
+  75   2            ILI9163B_display_full(BLACK);
+  76   2          LCD_prints16(4,7,"LCTECH",BLUE,BLACK);
+  77   2          LCD_prints6(2,18,"lctech-inc.taobao",WHITE,BLACK);
+  78   2          delay(1000); 
+  79   2          //while(1);
+  80   2         }
+  81   1      }
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =    612    ----
+   CONSTANT SIZE    =     83    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =   ----       2
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

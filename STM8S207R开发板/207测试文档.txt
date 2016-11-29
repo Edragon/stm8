@@ -1,0 +1,4 @@
+使用stlink下载器
+软件：ST Visual Programmer
+烧写STM8S207R\STM8S207_TEST\Debug\stm8s207_test.hex文件
+结果：C口流水灯；

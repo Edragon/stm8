@@ -1,0 +1,43 @@
+### uVision2 Project, (C) Keil Software
+### Do not modify !
+
+ cExt (*.c)
+ aExt (*.s*; *.src; *.a*)
+ oExt (*.obj)
+ lExt (*.lib)
+ tExt (*.txt; *.h; *.inc)
+ pExt (*.plm)
+ CppX (*.cpp)
+ DaveTm { 0,0,0,0,0,0,0,0 }
+
+Target (8051core), 0x0000 // Tools: 'MCS-51'
+GRPOPT 1,(app),1,0,0
+GRPOPT 2,(driver),1,0,0
+GRPOPT 3,(note),1,0,0
+
+OPTFFF 1,1,2,0,0,0,0,0,<.\STARTUP.A51><STARTUP.A51> 
+OPTFFF 1,2,1,167772160,0,43,27,0,<.\DriverFiles\application.c><application.c> { 44,0,0,0,0,0,0,0,1,0,0,0,255,255,255,255,255,255,255,255,252,255,255,255,228,255,255,255,22,0,0,0,27,0,0,0,33,4,0,0,55,1,0,0 }
+OPTFFF 2,3,1,754974720,0,221,28,0,<.\DriverFiles\SGP18T_ILI9163B_base.c><SGP18T_ILI9163B_base.c> 
+OPTFFF 2,4,1,0,0,159,19,0,<.\DriverFiles\SGP18T_ILI9163B_figure.c><SGP18T_ILI9163B_figure.c> { 44,0,0,0,0,0,0,0,1,0,0,0,255,255,255,255,255,255,255,255,252,255,255,255,228,255,255,255,22,0,0,0,27,0,0,0,13,4,0,0,55,1,0,0 }
+OPTFFF 2,5,1,520093697,0,232,25,0,<.\DriverFiles\SGP18T_ILI9163B_ascii.c><SGP18T_ILI9163B_ascii.c> { 44,0,0,0,0,0,0,0,1,0,0,0,255,255,255,255,255,255,255,255,252,255,255,255,228,255,255,255,0,0,0,0,0,0,0,0,7,4,0,0,24,1,0,0 }
+OPTFFF 3,6,5,0,0,0,0,0,<.\ReadMe.txt><ReadMe.txt> 
+
+ExtF <E:\1.8\Other\T18\9163C\V3.0_SGP18T_1.8ITL9163B\DRIVERFILES\SGP18T_ILI9163B_BASE.H> 6,30,0,{ 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0 }
+
+TARGOPT 1, (8051core)
+ CLK51=24000000
+  OPTTT 1,1,1,0
+  OPTHX 0,65535,0,0,0
+  OPTLX 120,65,8,<.\>
+  OPTOX 16
+  OPTLT 1,1,1,0,1,1,0,1,0,0,0,0
+  OPTXL 1,1,1,1,1,1,1,0,0
+  OPTFL 1,0,1
+  OPTAX 0
+  OPTDL (S8051.DLL)()(DP51.DLL)(-p51)(S8051.DLL)()(TP51.DLL)(-p51)
+  OPTDBG 44029,0,()()()()()()()()()() ()()()()
+  OPTDF 0x0
+  OPTLE <>
+  OPTLC <>
+EndOpt
+
