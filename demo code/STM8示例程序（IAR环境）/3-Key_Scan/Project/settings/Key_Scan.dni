@@ -1,0 +1,63 @@
+[DebugChecksum]
+Checksum=-146376465
+[DisAssemblyWindow]
+NumStates=_ 1
+State 1=_ 1
+[InstructionProfiling]
+Enabled=_ 0
+[CodeCoverage]
+Enabled=_ 0
+[Log file]
+LoggingEnabled=_ 0
+LogFile=_ ""
+Category=_ 0
+[TermIOLog]
+LoggingEnabled=_ 0
+LogFile=_ ""
+[StackPlugin]
+Enabled=1
+OverflowWarningsEnabled=1
+WarningThreshold=90
+SpWarningsEnabled=1
+WarnHow=0
+UseTrigger=1
+TriggerName=main
+LimitSize=0
+ByteLimit=50
+[CallStackLog]
+Enabled=0
+[DriverProfiling]
+Enabled=0
+Mode=1
+Graph=0
+Symbiont=0
+[InterruptLog]
+LogEnabled=0
+SumEnabled=0
+GraphEnabled=0
+ShowTimeLog=1
+ShowTimeSum=1
+SumSortOrder=0
+[Breakpoints]
+Bp0=_ "STD_CODE" "{$PROJ_DIR$\..\USER\main.c}.31.3@1" 0 0 0 0 "" 0 ""
+Count=1
+[Interrupts]
+Enabled=1
+[MemoryMap]
+Enabled=0
+Base=0
+UseAuto=0
+TypeViolation=1
+UnspecRange=1
+ActionState=1
+[Aliases]
+A0=_ "F:\STM32\STM8\STM8S开发例程\Key_Scan\FWlib\src\stm8s_clk.c" ""
+A1=_ "F:\STM32\STM8\STM8S开发例程\Key_Scan\FWlib\src\stm8s_gpio.c" ""
+A2=_ "F:\STM32\STM8\STM8S开发例程\Key_Scan\USER\key_scan.c" ""
+A3=_ "F:\STM32\STM8\STM8S开发例程\Key_Scan\USER\led.c" ""
+A4=_ "F:\STM32\STM8\STM8S开发例程\Key_Scan\USER\main.c" ""
+Count=5
+SuppressDialog=0
+[TraceHelper]
+Enabled=0
+ShowSource=1
