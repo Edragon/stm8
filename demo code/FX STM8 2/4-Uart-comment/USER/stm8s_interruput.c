@@ -1,6 +1,6 @@
 
 
-/******************** (C) COPYRIGHT  ·ç³ÛiCreateÇ¶ÈëÊ½¿ª·¢¹¤×÷ÊÒ ********************/
+/******************** (C) COPYRIGHT  é£Žé©°iCreateåµŒå…¥å¼å¼€å‘å·¥ä½œå®¤ ********************/
 
 #include "stm8s_uart1.h"
 #include "uart.h"
@@ -136,25 +136,29 @@ __interrupt void UART1_RX_IRQHandler(void)
 { 
    u8 Res;
     if(UART1_GetITStatus(UART1_IT_RXNE )!= RESET)  
-    {/*½ÓÊÕÖÐ¶Ï(½ÓÊÕµ½µÄÊý¾Ý±ØÐëÊÇ0x0d 0x0a½áÎ²)*/
+    {/*æŽ¥æ”¶ä¸­æ–­(æŽ¥æ”¶åˆ°çš„æ•°æ®å¿…é¡»æ˜¯0x0d 0x0aç»“å°¾)*/
 	Res =UART1_ReceiveData8();
-        /*(USART1->DR);¶ÁÈ¡½ÓÊÕµ½µÄÊý¾Ý,µ±¶ÁÍêÊý¾Ýºó×Ô¶¯È¡ÏûRXNEµÄÖÐ¶Ï±êÖ¾Î»*/
-	if(( UART_RX_NUM&0x80)==0)/*½ÓÊÕÎ´Íê³É*/
+        /*(USART1->DR);è¯»å–æŽ¥æ”¶åˆ°çš„æ•°æ®,å½“è¯»å®Œæ•°æ®åŽè‡ªåŠ¨å–æ¶ˆRXNEçš„ä¸­æ–­æ ‡å¿—ä½*/
+	if(( UART_RX_NUM&0x80)==0)/*æŽ¥æ”¶æœªå®Œæˆ*/                                                                          // no
 	{
-	    if( UART_RX_NUM&0x40)/*½ÓÊÕµ½ÁË0x0d*/
-		{
-		  if(Res!=0x0a) UART_RX_NUM=0;/*½ÓÊÕ´íÎó,ÖØÐÂ¿ªÊ¼*/
-		  else  UART_RX_NUM|=0x80;	/*½ÓÊÕÍê³ÉÁË */
-		}
-            else /*»¹Ã»ÊÕµ½0X0D*/
-              {	
-                if(Res==0x0d) UART_RX_NUM|=0x40;
-                else
-                  {
-                    RxBuffer[ UART_RX_NUM&0X3F]=Res ;
-                     UART_RX_NUM++;
-                      if( UART_RX_NUM>63) UART_RX_NUM=0;/*½ÓÊÕÊý¾Ý´íÎó,ÖØÐÂ¿ªÊ¼½ÓÊÕ*/  
-                  }		 
+      // æŽ¥æ”¶åˆ°0d ä½†æ˜¯æ²¡æœ‰0a
+	    if(UART_RX_NUM&0x40)/*æŽ¥æ”¶åˆ°äº†0x0d*/
+        {
+          if(Res!=0x0a) UART_RX_NUM=0;/*æŽ¥æ”¶é”™è¯¯,é‡æ–°å¼€å§‹*/
+          else  UART_RX_NUM|=0x80;	/*æŽ¥æ”¶å®Œæˆäº† */
+        }
+
+      else /*è¿˜æ²¡æ”¶åˆ°0X0D*/
+          {	
+             // read first here
+             // no 0x0d, 0x0a until get 0x0d, then put UART_RX_NUM to 0x40, jump to get 0x0d on next loop
+            if(Res==0x0d) UART_RX_NUM|=0x40;  // this will cause "if(UART_RX_NUM&0x40)"" be true                 
+            else
+              {
+                RxBuffer[ UART_RX_NUM&0X3F]=Res ;
+                UART_RX_NUM++;
+                if( UART_RX_NUM>63) UART_RX_NUM=0;/*æŽ¥æ”¶æ•°æ®é”™è¯¯,é‡æ–°å¼€å§‹æŽ¥æ”¶*/  
+              }		 
 	  }
 	}  		 
 		}
@@ -224,4 +228,4 @@ __interrupt void EEPROM_EEC_IRQHandler(void)
 }
 
 
-/******************* (C) COPYRIGHT ·ç³ÛiCreateÇ¶ÈëÊ½¿ª·¢¹¤×÷ÊÒ *****END OF FILE****/
+/******************* (C) COPYRIGHT é£Žé©°iCreateåµŒå…¥å¼å¼€å‘å·¥ä½œå®¤ *****END OF FILE****/
