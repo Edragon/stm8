@@ -23,8 +23,8 @@
 
 #define ON  0
 #define OFF 1
-#define LED1(ON_OFF)  if(ON_OFF==ON)GPIO_WriteLow(GPIOD, GPIO_PIN_0);\
-                      else GPIO_WriteHigh(GPIOD, GPIO_PIN_0)
+#define LED1(ON_OFF)  if(ON_OFF==ON)GPIO_WriteLow(GPIOD, GPIO_PIN_4);\
+                      else GPIO_WriteHigh(GPIOD, GPIO_PIN_4)
 
 #define LED2(ON_OFF)  if(ON_OFF==ON)GPIO_WriteLow(GPIOD, GPIO_PIN_1);\
                       else GPIO_WriteHigh(GPIOD, GPIO_PIN_1)
@@ -34,6 +34,9 @@
 
 #define LED4(ON_OFF)  if(ON_OFF==ON)GPIO_WriteLow(GPIOD, GPIO_PIN_3);\
                       else GPIO_WriteHigh(GPIOD, GPIO_PIN_3)
+                        
+#define LED5(ON_OFF)  if(ON_OFF==ON)GPIO_WriteLow(GPIOB, GPIO_PIN_5);\
+                      else GPIO_WriteHigh(GPIOB, GPIO_PIN_5)                       
 void LED_Init(void);
 void SetLedOFF(void);
 void LED_Display(void);

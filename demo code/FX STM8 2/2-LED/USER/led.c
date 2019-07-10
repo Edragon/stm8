@@ -23,13 +23,15 @@
 
 void LED_Init(void)
 {
-   GPIO_Init(GPIOD,(GPIO_PIN_0|GPIO_PIN_1|GPIO_PIN_2|GPIO_PIN_3),\
+   GPIO_Init(GPIOD,(GPIO_PIN_4|GPIO_PIN_1|GPIO_PIN_2|GPIO_PIN_3),\
              GPIO_MODE_OUT_PP_HIGH_FAST );//����LED�Ĺܽŵ�ģʽ
+   GPIO_Init(GPIOB,GPIO_PIN_5, GPIO_MODE_OUT_PP_HIGH_FAST );//����LED�Ĺܽŵ�ģʽ
 }
 
 void SetLedOFF(void)
 {
     GPIO_Write(GPIOD, 0xff);
+    GPIO_Write(GPIOB, 0xff);
 }
 void LED_Display(void)
 {

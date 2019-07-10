@@ -34,14 +34,11 @@ int main(void)
    SetLedOFF(); /* 让所有灯灭 */
   while (1)
   {
-    /*  添加你的代码  */
-    #ifdef Bit_or_Port
-    LED_ShowOneToOne();
-    /*   以上操作的是最简单的单个LED的点亮 利用宏定义实现的  */
-    #else
-    LED_Display();
-    /*   实现位移操作   */
-    #endif
+    Delay(0x1ffff);
+    
+    LED5(OFF);
+    Delay(0x1ffff);
+    LED5(ON);
    
   
   }
