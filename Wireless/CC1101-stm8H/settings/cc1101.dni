@@ -1,0 +1,85 @@
+[Stack]
+FillEnabled=0
+OverflowWarningsEnabled=1
+WarningThreshold=90
+SpWarningsEnabled=1
+WarnLogOnly=1
+UseTrigger=1
+TriggerName=main
+LimitSize=0
+ByteLimit=50
+[DebugChecksum]
+Checksum=-262423657
+[CallStack]
+ShowArgs=0
+[Disassembly]
+MixedMode=1
+[CallStackLog]
+Enabled=0
+[DriverProfiling]
+Enabled=0
+Mode=1
+Graph=0
+Symbiont=0
+Exclusions=
+[InterruptLog]
+LogEnabled=0
+SumEnabled=0
+GraphEnabled=0
+ShowTimeLog=1
+ShowTimeSum=1
+SumSortOrder=0
+[DataLog]
+LogEnabled=0
+SumEnabled=0
+GraphEnabled=0
+ShowTimeLog=1
+ShowTimeSum=1
+[Breakpoints2]
+Count=0
+[Interrupts]
+Enabled=1
+[MemoryMap]
+Enabled=0
+Base=0
+UseAuto=0
+TypeViolation=1
+UnspecRange=1
+ActionState=1
+[Trace1]
+Enabled=0
+ShowSource=1
+[array_types]
+Fmt0=u8[2]	4	0
+[watch_formats]
+Fmt0={W}0:cc_pcb.power	3	0
+Fmt1={W}0:cc_pcb.state	4	0
+Fmt2={W}0:cc_pcb.temp	3	0
+Fmt3={W}0:cc_pcb.temp0	3	0
+Fmt4={W}0:dat.d32	4	0
+Fmt5={W}0:heaterTemp	3	0
+Fmt6={W}0:n	3	0
+Fmt7={W}0:read.temp	4	0
+Fmt8={W}0:read.temp0	3	0
+Fmt9={W}0:test	4	0
+Fmt10={W}42:len	3	0
+Fmt11={W}42:xx	4	0
+[DataSample]
+LogEnabled=0
+GraphEnabled=0
+ShowTimeLog=1
+ShowTimeSum=1
+[Log file]
+LoggingEnabled=_ 0
+LogFile=_ ""
+Category=_ 0
+[TermIOLog]
+LoggingEnabled=_ 0
+LogFile=_ ""
+[Breakpoints]
+Count=0
+[Aliases]
+A0=_ "D:\CC1101-stm8\CC1101_LIB\CC1101.c" "E:\CC1101-stm8\CC1101_LIB\CC1101.c"
+A1=_ "D:\CC1101\TX\spi.c" ""
+Count=2
+SuppressDialog=1
